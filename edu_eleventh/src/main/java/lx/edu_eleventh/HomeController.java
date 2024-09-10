@@ -20,6 +20,7 @@ public class HomeController {
   @RequestMapping("/home.do")
   public String home() {
 	  System.out.println("home.do!");
+	  System.out.println("home.do!");
     return "home";
   }
 
