@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper-addrbook">
+	<insert id="createAddrBook" parameterType="lx.edu_eleventh.vo.AddrbookVO">
+		insert into addrbook (ab_name, ab_email, ab_tel, ab_birth, ab_comdept, ab_memo)
+		values (#{abName}, #{abEmail}, #{abTel}, #{abBirth}, #{abComdept}, #{abMemo})
+	</insert>
+	
+	<select id="getListAddrbook" resultType="lx.edu_eleventh.vo.AddrbookVO">
+			select ab_id abId
+				, ab_name abName
+				, ab_email abEmail
+				, ab_tel abTel
+				, ab_birth abBirth
+				, ab_comdept abComdept
+				, ab_memo abMemo
+			from addrbook
+	</select>
+	
+	<select id="getAddrbookById"  parameterType="int" resultType="lx.edu_eleventh.vo.AddrbookVO">
+			select ab_id abId
+				, ab_name abName
+				, ab_email abEmail
+				, ab_tel abTel
+				, ab_birth abBirth
+				, ab_comdept abComdept
+				, ab_memo abMemo
+			from addrbook
+			where ab_id = #{abId}
+	</select>
+	
+	
+	<delete id="deleteAddrbookById" parameterType="int">
+		delete from addrbook where ab_id = #{abId}
+	</delete>
+	
+	<!--   
+	<delete id="deleteEmpById" parameterType="int">
+		delete from employees where employee_id = #{id}
+	</delete>
+	
+	<update id="updateEmp" parameterType="vo.AddrbookVO">
+		update employees
+		<set>
+			<if test=" firstName != null">first_name = #{firstName}</if>
+			<if test=" lastName != null">, last_name = #{lastName}</if>
+			<if test=" hireDate != null">, hire_date = #{hireDate}</if>
+			<if test=" salary != null">, salary = #{salary}</if>
+			<if test=" departmertId != null">, department_id = #{departmentId}</if>
+		</set>
+		where employee_id = #{employeeId}
+	</update>
+	
+	<select id="getEmpListByName" parameterType="String" resultType="vo.Emp">
+			select employee_id employeeId
+				, first_name firstName
+				, last_name lastName
+				, hire_date hireDate
+				, salary
+				, department_id departmentId
+			from employees
+			where first_name = #{id} or last_name = #{id}
+	</select>
+	
+	<select id="getEmpListByHireDate" parameterType="int" resultType="vo.Emp">
+			select employee_id employeeId
+				, first_name firstName
+				, last_name lastName
+				, hire_date hireDate
+				, salary
+				, department_id departmentId
+			from employees
+			where year(hire_date) = #{id}
+	</select>
+	
+	<select id="getEmpListByDeptId" parameterType="int" resultType="vo.Emp">
+			select employee_id employeeId
+				, first_name firstName
+				, last_name lastName
+				, hire_date hireDate
+				, salary
+				, department_id departmentId
+			from employees
+			where department_id = #{id}
+	</select>
+	
+	<select id="getEmpListByCityName" parameterType="String" resultType="vo.Emp">
+			select employee_id employeeId, first_name firstName, last_name lastName,
+			hire_date hireDate, salary, department_id departmentId
+			from employees where department_id in
+			(select department_id from departments where location_id in
+			(select location_id from locations where city = #{cityName}))
+	</select>
+	
+	<select id="getEmpListByManagerName" parameterType="String" resultType="vo.Emp">
+			select employee_id employeeId, first_name firstName, last_name lastName,
+			hire_date hireDate, salary, department_id departmentId from employees where department_id
+			from employees where department_id = (select e.department_id from employees e
+			join departments d on e.department_id = d.department_id
+			where e.employee_id = d.manager_id and (first_name = #{firstName} or last_name = #{managerName}))
+	</select>
+	-->
+	
+</mapper>
